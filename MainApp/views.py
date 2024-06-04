@@ -19,13 +19,19 @@ userData = {"name" : "Иван",
              
 # Create your views here.
 def home(request):
-    text = """
-    <h1>"Изучаем django День первый !"</h1>
-    <strong>Автор</strong>: <i>Иванов И.П.</i>
-    <h2><a href="/about">About</a></h2>
-    <h2><a href="/items">Items<a></h2>
-    """
-    return HttpResponse(text)
+    # text = """
+    # <h1>"Изучаем django День первый !"</h1>
+    # <strong>Автор</strong>: <i>Иванов И.П.</i>
+    # <h2><a href="/about">About</a></h2>
+    # <h2><a href="/items">Items<a></h2>
+    # """
+    # return HttpResponse(text)
+    context = {
+        "name": "Петров Николай Петрович",
+        "email": "my_mail@mail.ru"
+    }
+
+    return render(request, "index.html", context)
 
 def about(request):
     text = f"""
@@ -36,12 +42,18 @@ def about(request):
     return HttpResponse(text)
 
 def items_list(request):
-    text = "<h1>Список товаров:</h1><ol>"
-    for item in items:
-        text += f"""
-        <li><a href="/item/{item["id"]}"><strong>{item["name"]}</strong>, {item["quantity"]} шт.</a></li>
-        """
-    text += "</ol>"
+    # text = "<h1>Список товаров:</h1><ol>"
+    # for item in items:
+    #     text += f"""
+    #     <li><a href="/item/{item["id"]}"><strong>{item["name"]}</strong>, {item["quantity"]} шт.</a></li>
+    #     """
+    # text += "</ol>"
+    context = {
+        "items" : items
+    }
+
+    return render(request, "items-list.html", context)
+    
     return HttpResponse(text)
 
 def item_id(request, id):
