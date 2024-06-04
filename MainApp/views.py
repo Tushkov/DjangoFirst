@@ -61,13 +61,17 @@ def item_id(request, id):
 
     for item in items:
         if id == item["id"]:
-            return HttpResponse(f"""
-            <h1>Товар: ID {item["id"]}</h1>
-            <p>Название товара: {item["name"]}</p>
-            <p>Количество: {item["quantity"]}</p>
-            <a href="/items">Назад</a>
-            """)
-
+        #     return HttpResponse(f"""
+        #     <h1>Товар: ID {item["id"]}</h1>
+        #     <p>Название товара: {item["name"]}</p>
+        #     <p>Количество: {item["quantity"]}</p>
+        #     <a href="/items">Назад</a>
+        #     """)
+            context = {
+                "item" : item
+            }
+            return render(request, "item-page.html", context)
+        
     return HttpResponseNotFound(f"<h1>Товар ID = {id} не найден</h1>")
 
 
