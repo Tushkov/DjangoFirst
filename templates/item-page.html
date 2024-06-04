@@ -6,9 +6,14 @@
     <title>Карточка товара</title>
 </head>
 <body>
+    <div>Меню: <a href="/"> Home</a> / <a href="/items">Items</a> / <a href="/about">About </a></div>
     <h1>Товар: {{ item.name }}</h1>
     <p>ID: {{ item.id }}</p>
-    <p>Количество: {{ item.quantity }}</p>
+    {% if item.quantity == 0 %}
+        <p>Товар отсутствует</p>
+    {% else %}
+        <p>Количество: {{ item.quantity }} ед.</p>
+    {% endif %}
     <a href="/items">Назад</a>
 </body>
 </html>

@@ -10,7 +10,6 @@ items = [
    {"id": 8, "name": "Кепка", "quantity":124}
 ]
 
-
 userData = {"name" : "Иван",
             "middleName" : "Петрович",
             "surName" : "Иванов",
@@ -34,12 +33,8 @@ def home(request):
     return render(request, "index.html", context)
 
 def about(request):
-    text = f"""
-    <h1>Ф.И.О.: {userData["name"]} {userData["surName"]} {userData["middleName"]}</h1>
-    <p><strong>Телефон:</strong> {userData["phone"]}</p>
-    <p><strong>Email:</strong> {userData["email"]}</p>
-    """
-    return HttpResponse(text)
+
+    return render(request, "about.html", userData)
 
 def items_list(request):
     # text = "<h1>Список товаров:</h1><ol>"
@@ -53,8 +48,6 @@ def items_list(request):
     }
 
     return render(request, "items-list.html", context)
-    
-    return HttpResponse(text)
 
 def item_id(request, id):
     text = "<h1>Товар не найден</h1>"
