@@ -11,20 +11,29 @@ items = [
 ]
 
 
-userData = """<p>Имя: <strong>Иван</strong></p>
-<p>Отчество: <strong>Петрович</strong></p>
-<p>Фамилия: <strong>Иванов</strong></p>
-<p>телефон: <strong>8-923-600-01-02</strong></p>
-<p>email: <strong>vasya@mail.ru</strong></p>"""
-
+userData = {"name" : "Иван",
+            "middleName" : "Петрович",
+            "surName" : "Иванов",
+            "phone" : "8-923-600-01-02",
+            "email" : "vasya@mail.ru"}
+             
 # Create your views here.
 def home(request):
-    text = """<h1>"Изучаем django День первый !"</h1>
-            <strong>Автор</strong>: <i>Иванов И.П.</i>"""
+    text = """
+    <h1>"Изучаем django День первый !"</h1>
+    <strong>Автор</strong>: <i>Иванов И.П.</i>
+    <h2><a href="/about">About</a></h2>
+    <h2><a href="/items">Items<a></h2>
+    """
     return HttpResponse(text)
 
 def about(request):
-    return HttpResponse(userData)
+    text = f"""
+    <h1>Ф.И.О.: {userData["name"]} {userData["surName"]} {userData["middleName"]}</h1>
+    <p><strong>Телефон:</strong> {userData["phone"]}</p>
+    <p><strong>Email:</strong> {userData["email"]}</p>
+    """
+    return HttpResponse(text)
 
 def items_list(request):
     text = "<h1>Список товаров:</h1><ol>"
