@@ -29,7 +29,9 @@ def about(request):
 def items_list(request):
     text = "<h1>Список товаров:</h1><ol>"
     for item in items:
-        text += f"""<li><strong>ID {item["id"]}</strong>, Название товара: {item["name"]}, Количество: {item["quantity"]}</li>"""
+        text += f"""
+        <li><a href="/item/{item["id"]}"><strong>{item["name"]}</strong>, {item["quantity"]} шт.</a></li>
+        """
     text += "</ol>"
     return HttpResponse(text)
 
@@ -42,6 +44,7 @@ def item_id(request, id):
             <h1>Товар: ID {item["id"]}</h1>
             <p>Название товара: {item["name"]}</p>
             <p>Количество: {item["quantity"]}</p>
+            <a href="/items">Назад</a>
             """)
 
     return HttpResponseNotFound(f"<h1>Товар ID = {id} не найден</h1>")
